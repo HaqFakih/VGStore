@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Top Up Game</title>
+<title>Fakih Top Up - Gaming Store</title>
 
 <style>
 *{box-sizing:border-box}
@@ -11,86 +11,120 @@
 body{
 margin:0;
 font-family:Arial,sans-serif;
-background:#090914;
-color:white
+background:#080812;
+color:white;
 }
 
 .container{
 max-width:520px;
 margin:auto;
-padding:20px
+padding:18px;
+}
+
+.header{
+text-align:center;
+padding:22px 10px;
+}
+
+.logo{
+font-size:42px;
 }
 
 h1{
-text-align:center;
+margin:5px 0;
 color:#00e5ff;
-margin-bottom:5px
 }
 
 .subtitle{
-text-align:center;
 color:#aaa;
-margin-bottom:20px
+font-size:14px;
 }
 
 .card{
 background:#151525;
 padding:20px;
-border-radius:16px;
-box-shadow:0 0 20px #000
+border-radius:18px;
+margin-bottom:15px;
+box-shadow:0 0 20px #000;
 }
 
 label{
 display:block;
 margin-top:15px;
 margin-bottom:7px;
-font-weight:bold
+font-weight:bold;
 }
 
 select,input{
 width:100%;
 padding:13px;
 border:1px solid #333;
-border-radius:9px;
+border-radius:10px;
 background:#222238;
 color:white;
-font-size:15px
+font-size:15px;
+}
+
+.game-info{
+display:flex;
+align-items:center;
+gap:12px;
+background:#202038;
+padding:12px;
+border-radius:12px;
+margin-top:12px;
+}
+
+.game-icon{
+font-size:30px;
 }
 
 .nominal{
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:10px;
-margin-top:10px
+margin-top:10px;
 }
 
 .nominal button{
-padding:14px 8px;
+padding:13px 7px;
 border:1px solid #333;
 border-radius:10px;
 background:#202038;
 color:white;
 font-weight:bold;
-cursor:pointer
 }
 
-.nominal button:hover,
 .nominal button.pilih{
 background:#00a8bd;
-border-color:#00e5ff
+border-color:#00e5ff;
 }
 
 .info{
 margin-top:18px;
 padding:14px;
 background:#202038;
-border-radius:10px;
-line-height:1.8
+border-radius:12px;
+line-height:1.9;
 }
 
 .order{
 color:#00e5ff;
-font-weight:bold
+font-weight:bold;
+}
+
+.payment{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin-top:10px;
+}
+
+.payment div{
+background:#202038;
+padding:13px;
+border-radius:10px;
+text-align:center;
 }
 
 #pesan{
@@ -98,16 +132,23 @@ width:100%;
 margin-top:20px;
 padding:15px;
 border:0;
-border-radius:10px;
+border-radius:12px;
 background:#25d366;
 color:white;
 font-size:17px;
 font-weight:bold;
-cursor:pointer
 }
 
-#pesan:hover{
-background:#1ebe5d
+.cara-order{
+line-height:1.8;
+color:#ddd;
+}
+
+.footer{
+text-align:center;
+color:#777;
+font-size:12px;
+padding:15px;
 }
 </style>
 </head>
@@ -116,8 +157,11 @@ background:#1ebe5d
 
 <div class="container">
 
-<h1>🎮 TOP UP GAME</h1>
-<div class="subtitle">Cepat • Mudah • Aman</div>
+<div class="header">
+<div class="logo">🎮</div>
+<h1>FAKIH TOP UP</h1>
+<div class="subtitle">Top Up Game • Cepat • Mudah • Aman</div>
+</div>
 
 <div class="card">
 
@@ -130,6 +174,15 @@ background:#1ebe5d
 <option value="Honor of Kings">Honor of Kings</option>
 </select>
 
+<div class="game-info">
+<div class="game-icon" id="gameIcon">⚔️</div>
+<div>
+<b id="gameName">Mobile Legends</b>
+<br>
+<span style="color:#aaa">Pilih game yang ingin di-top up</span>
+</div>
+</div>
+
 <label>🆔 ID Player</label>
 <input id="playerId" type="text" placeholder="Masukkan ID Player">
 
@@ -137,13 +190,17 @@ background:#1ebe5d
 <input id="serverId" type="text" placeholder="Masukkan Server / Zone ID">
 
 <label>💎 Pilih Nominal</label>
-
 <div class="nominal" id="nominalBox"></div>
 
 <div class="info">
 
 🧾 Nomor Order:
 <span class="order" id="orderText">Akan dibuat saat pesan</span>
+
+<br>
+
+🎮 Game:
+<b id="gameText">Mobile Legends</b>
 
 <br>
 
@@ -157,11 +214,54 @@ background:#1ebe5d
 
 </div>
 
+<label>💳 Metode Pembayaran</label>
+
+<div class="payment">
+
+<div>💵 Transfer / E-Wallet</div>
+<div>📲 Konfirmasi WhatsApp</div>
+
+</div>
+
 <button id="pesan" onclick="pesanWhatsApp()">
 📲 PESAN VIA WHATSAPP
 </button>
 
 </div>
+
+<div class="card">
+
+<h3>📋 Cara Order</h3>
+
+<div class="cara-order">
+1️⃣ Pilih game<br>
+2️⃣ Masukkan ID Player<br>
+3️⃣ Masukkan Server / Zone ID<br>
+4️⃣ Pilih nominal<br>
+5️⃣ Klik <b>PESAN VIA WHATSAPP</b><br>
+6️⃣ Admin akan memberikan informasi pembayaran<br>
+7️⃣ Setelah pembayaran dikonfirmasi, pesanan diproses
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>⚡ Info</h3>
+
+<div class="cara-order">
+✅ Proses melalui WhatsApp Admin<br>
+✅ Nomor order otomatis<br>
+✅ Data pesanan dikirim lengkap<br>
+✅ Cocok untuk pemesanan dari HP
+</div>
+
+</div>
+
+<div class="footer">
+© 2026 Fakih Top Up
+</div>
+
 </div>
 
 <script>
@@ -210,9 +310,17 @@ const dataGame={
 
 };
 
+const iconGame={
+"Mobile Legends":"⚔️",
+"Free Fire":"🔥",
+"PUBG Mobile":"🔫",
+"Honor of Kings":"👑"
+};
+
 function ubahNominal(){
 
 const game=document.getElementById("game").value;
+
 const box=document.getElementById("nominalBox");
 
 box.innerHTML="";
@@ -222,14 +330,15 @@ hargaDipilih="";
 
 document.getElementById("nominalText").innerText="Belum dipilih";
 document.getElementById("hargaText").innerText="-";
+document.getElementById("gameText").innerText=game;
+document.getElementById("gameName").innerText=game;
+document.getElementById("gameIcon").innerText=iconGame[game];
 
 dataGame[game].forEach(item=>{
 
 const button=document.createElement("button");
 
-button.innerHTML=
-item[0]+"<br>Rp"+
-Number(item[1]).toLocaleString("id-ID");
+button.innerHTML=item[0]+"<br>Rp"+Number(item[1]).toLocaleString("id-ID");
 
 button.onclick=function(){
 
@@ -239,11 +348,14 @@ document.querySelectorAll(".nominal button")
 button.classList.add("pilih");
 
 nominalDipilih=item[0];
+
 hargaDipilih=item[1];
 
-document.getElementById("nominalText").innerText=item[0];
+document.getElementById("nominalText")
+.innerText=item[0];
 
-document.getElementById("hargaText").innerText=
+document.getElementById("hargaText")
+.innerText=
 "Rp"+Number(item[1]).toLocaleString("id-ID");
 
 };
@@ -256,7 +368,9 @@ box.appendChild(button);
 
 function buatOrderID(){
 
-const angka=Math.floor(100000+Math.random()*900000);
+const angka=Math.floor(
+100000+Math.random()*900000
+);
 
 return "ORDER-"+angka;
 
@@ -265,33 +379,49 @@ return "ORDER-"+angka;
 function pesanWhatsApp(){
 
 const game=document.getElementById("game").value;
-const playerId=document.getElementById("playerId").value.trim();
-const serverId=document.getElementById("serverId").value.trim();
+
+const playerId=
+document.getElementById("playerId")
+.value.trim();
+
+const serverId=
+document.getElementById("serverId")
+.value.trim();
 
 if(!playerId){
+
 alert("Masukkan ID Player terlebih dahulu!");
+
 return;
+
 }
 
 if(!serverId){
+
 alert("Masukkan Server / Zone ID terlebih dahulu!");
+
 return;
+
 }
 
 if(!nominalDipilih){
+
 alert("Pilih nominal terlebih dahulu!");
+
 return;
+
 }
 
 const orderID=buatOrderID();
 
-document.getElementById("orderText").innerText=orderID;
+document.getElementById("orderText")
+.innerText=orderID;
 
 const harga=
-"Rp"+Number(hargaDipilih).toLocaleString("id-ID");
+"Rp"+Number(hargaDipilih)
+.toLocaleString("id-ID");
 
-const pesan=
-`Halo Admin 👋
+const pesan=`Halo Admin 👋
 
 Saya ingin melakukan top up.
 
@@ -307,10 +437,8 @@ Mohon info pembayaran dan proses top upnya.`;
 const nomorAdmin="6287739759760";
 
 const url=
-"https://wa.me/"+
-nomorAdmin+
-"?text="+
-encodeURIComponent(pesan);
+"https://wa.me/"+nomorAdmin+
+"?text="+encodeURIComponent(pesan);
 
 window.open(url,"_blank");
 
