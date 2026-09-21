@@ -3,535 +3,226 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TopUpZone</title>
+<title>Top Up Game</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Arial,sans-serif;
+* {
+  box-sizing: border-box;
 }
 
-body{
-  background:#080b14;
-  color:white;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0b0b14;
+  color: white;
 }
 
-header{
-  padding:20px 7%;
-  background:#101526;
-  border-bottom:1px solid #252c42;
+.container {
+  max-width: 500px;
+  margin: auto;
+  padding: 25px 18px;
 }
 
-.logo{
-  font-size:25px;
-  font-weight:bold;
-  color:#7c5cff;
+h1 {
+  text-align: center;
+  color: #00e5ff;
 }
 
-.logo span{
-  color:#00d9ff;
+.card {
+  background: #151525;
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 20px;
 }
 
-.hero{
-  text-align:center;
-  padding:40px 20px 25px;
+label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 7px;
 }
 
-.hero h1{
-  font-size:32px;
+input, select {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 9px;
+  background: #24243a;
+  color: white;
+  font-size: 15px;
 }
 
-.hero h1 span{
-  color:#7c5cff;
+.nominal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
 
-.hero p{
-  color:#9da6ba;
-  margin-top:10px;
+.nominal button {
+  padding: 14px;
+  border: 1px solid #333;
+  border-radius: 10px;
+  background: #202038;
+  color: white;
+  cursor: pointer;
 }
 
-.container{
-  width:90%;
-  max-width:650px;
-  margin:auto;
+.nominal button:hover {
+  background: #00a8bd;
 }
 
-.box{
-  background:#111625;
-  border:1px solid #252c42;
-  border-radius:18px;
-  padding:25px;
-  margin:25px 0;
+.pilih {
+  background: #00a8bd !important;
 }
 
-.checkout,
-.payment,
-.success{
-  display:none;
+#pesan {
+  width: 100%;
+  margin-top: 22px;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  background: #25d366;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-h2{
-  margin-bottom:20px;
+#pesan:hover {
+  background: #1ebe5d;
 }
 
-label{
-  display:block;
-  color:#cbd1df;
-  margin:15px 0 8px;
-  font-size:14px;
-}
-
-input,select{
-  width:100%;
-  padding:14px;
-  border-radius:10px;
-  border:1px solid #30384f;
-  background:#080b14;
-  color:white;
-  outline:none;
-}
-
-.nominal{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-}
-
-.nominal button{
-  padding:14px;
-  background:#171d2e;
-  border:1px solid #30384f;
-  color:white;
-  border-radius:10px;
-  cursor:pointer;
-}
-
-.nominal button.selected{
-  background:#7c5cff;
-  border-color:#7c5cff;
-}
-
-.main-btn{
-  width:100%;
-  padding:15px;
-  margin-top:22px;
-  border:none;
-  border-radius:12px;
-  background:linear-gradient(90deg,#7c5cff,#00d9ff);
-  color:white;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.back{
-  background:#242b3d;
-}
-
-.summary{
-  background:#080b14;
-  border-radius:12px;
-  padding:18px;
-}
-
-.row{
-  display:flex;
-  justify-content:space-between;
-  gap:15px;
-  padding:10px 0;
-  border-bottom:1px solid #202638;
-}
-
-.row:last-child{
-  border-bottom:none;
-}
-
-.total{
-  color:#00d9ff;
-  font-size:20px;
-  font-weight:bold;
-}
-
-.demo{
-  background:#302500;
-  border:1px solid #806500;
-  color:#ffd84d;
-  padding:13px;
-  border-radius:10px;
-  font-size:13px;
-  margin-bottom:20px;
-}
-
-.payment-card{
-  background:#080b14;
-  border:1px solid #30384f;
-  padding:20px;
-  border-radius:14px;
-  text-align:center;
-  margin-top:15px;
-}
-
-.payment-icon{
-  font-size:45px;
-  margin-bottom:10px;
-}
-
-.code{
-  font-size:24px;
-  letter-spacing:4px;
-  color:#00d9ff;
-  font-weight:bold;
-  margin:15px 0;
-}
-
-.status{
-  text-align:center;
-  padding:20px;
-}
-
-.check{
-  font-size:65px;
-  margin-bottom:15px;
-}
-
-footer{
-  text-align:center;
-  padding:25px;
-  color:#6f788d;
+.info {
+  margin-top: 18px;
+  padding: 12px;
+  background: #202038;
+  border-radius: 10px;
+  font-size: 14px;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo">TopUp<span>Zone</span></div>
-</header>
-
-<section class="hero">
-  <h1>Top Up <span>Game</span></h1>
-  <p>Cepat, mudah, dan praktis.</p>
-</section>
-
 <div class="container">
 
-<!-- TOP UP -->
-<div class="box" id="topupBox">
+<h1>🎮 TOP UP GAME</h1>
 
-<h2>🎮 Pilih Game</h2>
+<div class="card">
 
 <label>Game</label>
 <select id="game">
-<option>Mobile Legends</option>
-<option>Free Fire</option>
-<option>PUBG Mobile</option>
-<option>Genshin Impact</option>
+  <option value="Mobile Legends">Mobile Legends</option>
+  <option value="Free Fire">Free Fire</option>
+  <option value="PUBG Mobile">PUBG Mobile</option>
 </select>
 
 <label>ID Player</label>
-<input id="playerId" type="text" placeholder="Masukkan ID Player">
+<input type="text" id="playerId" placeholder="Masukkan ID Player">
 
 <label>Server / Zone ID</label>
-<input id="serverId" type="text" placeholder="Masukkan Server ID">
+<input type="text" id="serverId" placeholder="Masukkan Server / Zone ID">
 
-<label>Nominal</label>
+<label>Pilih Nominal</label>
 
 <div class="nominal">
 
-<button onclick="pilihNominal(this,'86 Diamond','Rp20.000')">
+<button onclick="pilih(this, '86 DM', '20000')">
 86 DM<br>Rp20.000
 </button>
 
-<button onclick="pilihNominal(this,'172 Diamond','Rp40.000')">
+<button onclick="pilih(this, '172 DM', '40000')">
 172 DM<br>Rp40.000
 </button>
 
-<button onclick="pilihNominal(this,'257 Diamond','Rp60.000')">
+<button onclick="pilih(this, '257 DM', '60000')">
 257 DM<br>Rp60.000
 </button>
 
-<button onclick="pilihNominal(this,'344 Diamond','Rp80.000')">
+<button onclick="pilih(this, '344 DM', '80000')">
 344 DM<br>Rp80.000
 </button>
 
 </div>
 
-<button class="main-btn" onclick="lanjutCheckout()">
-⚡ LANJUTKAN TOP UP
+<div class="info">
+Nominal: <b id="nominalText">Belum dipilih</b><br>
+Harga: <b id="hargaText">-</b>
+</div>
+
+<button id="pesan" onclick="pesanWhatsApp()">
+📲 PESAN VIA WHATSAPP
 </button>
 
 </div>
-
-
-<!-- CHECKOUT -->
-<div class="box checkout" id="checkoutBox">
-
-<h2>🧾 Checkout</h2>
-
-<div class="summary">
-
-<div class="row">
-<span>Game</span>
-<span id="checkoutGame">-</span>
 </div>
-
-<div class="row">
-<span>ID Player</span>
-<span id="checkoutId">-</span>
-</div>
-
-<div class="row">
-<span>Server</span>
-<span id="checkoutServer">-</span>
-</div>
-
-<div class="row">
-<span>Nominal</span>
-<span id="checkoutNominal">-</span>
-</div>
-
-<div class="row">
-<span>Total</span>
-<span class="total" id="checkoutHarga">-</span>
-</div>
-
-</div>
-
-<label>Metode Pembayaran</label>
-
-<select id="paymentMethod">
-<option>QRIS Demo</option>
-<option>GoPay Demo</option>
-<option>DANA Demo</option>
-<option>OVO Demo</option>
-</select>
-
-<button class="main-btn" onclick="konfirmasi()">
-✅ KONFIRMASI PESANAN
-</button>
-
-<button class="main-btn back" onclick="kembaliKeTopup()">
-← KEMBALI
-</button>
-
-</div>
-
-
-<!-- PEMBAYARAN DEMO -->
-<div class="box payment" id="paymentBox">
-
-<h2>💳 Pembayaran</h2>
-
-<div class="demo">
-⚠️ MODE DEMO — Ini hanya simulasi pembayaran.
-Tidak ada uang yang benar-benar ditransaksikan.
-</div>
-
-<div class="summary">
-
-<div class="row">
-<span>Pesanan</span>
-<span id="payNominal">-</span>
-</div>
-
-<div class="row">
-<span>Total</span>
-<span class="total" id="payHarga">-</span>
-</div>
-
-</div>
-
-<div class="payment-card">
-
-<div class="payment-icon">📱</div>
-
-<h3 id="payMethod">QRIS Demo</h3>
-
-<p style="color:#929bae;margin-top:8px;">
-Kode pembayaran simulasi
-</p>
-
-<div class="code">123 456</div>
-
-<p style="color:#929bae;font-size:13px;">
-Gunakan tombol di bawah untuk menyelesaikan simulasi.
-</p>
-
-</div>
-
-<button class="main-btn" onclick="bayarDemo()">
-✅ BAYAR DEMO
-</button>
-
-<button class="main-btn back" onclick="kembaliCheckout()">
-← KEMBALI
-</button>
-
-</div>
-
-
-<!-- SELESAI -->
-<div class="box success" id="successBox">
-
-<div class="status">
-
-<div class="check">✅</div>
-
-<h2>Pembayaran Berhasil!</h2>
-
-<p style="color:#9da6ba;margin-top:10px;">
-Ini adalah simulasi pembayaran demo.
-</p>
-
-<div class="summary" style="margin-top:20px;text-align:left;">
-
-<div class="row">
-<span>Game</span>
-<span id="successGame">-</span>
-</div>
-
-<div class="row">
-<span>ID Player</span>
-<span id="successId">-</span>
-</div>
-
-<div class="row">
-<span>Nominal</span>
-<span id="successNominal">-</span>
-</div>
-
-</div>
-
-<button class="main-btn" onclick="pesananBaru()">
-🔄 PESANAN BARU
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-<footer>
-© 2026 TopUpZone • Demo Website
-</footer>
-
 
 <script>
 
-let nominalDipilih="";
-let hargaDipilih="";
+let nominalDipilih = "";
+let hargaDipilih = "";
 
-function pilihNominal(button,nominal,harga){
+function pilih(button, nominal, harga) {
 
-document.querySelectorAll(".nominal button")
-.forEach(btn=>btn.classList.remove("selected"));
+  document.querySelectorAll(".nominal button")
+    .forEach(btn => btn.classList.remove("pilih"));
 
-button.classList.add("selected");
+  button.classList.add("pilih");
 
-nominalDipilih=nominal;
-hargaDipilih=harga;
+  nominalDipilih = nominal;
+  hargaDipilih = harga;
+
+  document.getElementById("nominalText").innerText = nominal;
+
+  document.getElementById("hargaText").innerText =
+    "Rp" + Number(harga).toLocaleString("id-ID");
 }
 
+function pesanWhatsApp() {
 
-function lanjutCheckout(){
+  const game = document.getElementById("game").value;
+  const playerId = document.getElementById("playerId").value.trim();
+  const serverId = document.getElementById("serverId").value.trim();
 
-const game=document.getElementById("game").value;
-const id=document.getElementById("playerId").value;
-const server=document.getElementById("serverId").value;
+  if (!playerId) {
+    alert("Masukkan ID Player terlebih dahulu!");
+    return;
+  }
 
-if(id===""){
-alert("Masukkan ID Player terlebih dahulu.");
-return;
-}
+  if (!serverId) {
+    alert("Masukkan Server / Zone ID terlebih dahulu!");
+    return;
+  }
 
-if(server===""){
-alert("Masukkan Server / Zone ID.");
-return;
-}
+  if (!nominalDipilih) {
+    alert("Pilih nominal terlebih dahulu!");
+    return;
+  }
 
-if(nominalDipilih===""){
-alert("Pilih nominal terlebih dahulu.");
-return;
-}
+  const harga =
+    "Rp" + Number(hargaDipilih).toLocaleString("id-ID");
 
-document.getElementById("checkoutGame").textContent=game;
-document.getElementById("checkoutId").textContent=id;
-document.getElementById("checkoutServer").textContent=server;
-document.getElementById("checkoutNominal").textContent=nominalDipilih;
-document.getElementById("checkoutHarga").textContent=hargaDipilih;
+  const pesan =
+`Halo Admin 👋
 
-document.getElementById("topupBox").style.display="none";
-document.getElementById("checkoutBox").style.display="block";
+Saya ingin melakukan top up.
 
-window.scrollTo(0,0);
-}
+🎮 Game: ${game}
+🆔 ID Player: ${playerId}
+🌐 Server/Zone: ${serverId}
+💎 Nominal: ${nominalDipilih}
+💰 Harga: ${harga}
 
+Mohon info pembayaran dan proses top upnya.`;
 
-function kembaliKeTopup(){
+  const nomorAdmin = "6287739759760";
 
-document.getElementById("checkoutBox").style.display="none";
-document.getElementById("topupBox").style.display="block";
+  const url =
+    "https://wa.me/" +
+    nomorAdmin +
+    "?text=" +
+    encodeURIComponent(pesan);
 
-}
-
-
-function kembaliCheckout(){
-
-document.getElementById("paymentBox").style.display="none";
-document.getElementById("checkoutBox").style.display="block";
-
-}
-
-
-function konfirmasi(){
-
-const method=document.getElementById("paymentMethod").value;
-
-document.getElementById("payNominal").textContent=nominalDipilih;
-document.getElementById("payHarga").textContent=hargaDipilih;
-document.getElementById("payMethod").textContent=method;
-
-document.getElementById("checkoutBox").style.display="none";
-document.getElementById("paymentBox").style.display="block";
-
-window.scrollTo(0,0);
-}
-
-
-function bayarDemo(){
-
-const game=document.getElementById("game").value;
-const id=document.getElementById("playerId").value;
-
-document.getElementById("successGame").textContent=game;
-document.getElementById("successId").textContent=id;
-document.getElementById("successNominal").textContent=nominalDipilih;
-
-document.getElementById("paymentBox").style.display="none";
-document.getElementById("successBox").style.display="block";
-
-window.scrollTo(0,0);
-}
-
-
-function pesananBaru(){
-
-document.getElementById("successBox").style.display="none";
-document.getElementById("topupBox").style.display="block";
-
-document.getElementById("playerId").value="";
-document.getElementById("serverId").value="";
-
-nominalDipilih="";
-hargaDipilih="";
-
-document.querySelectorAll(".nominal button")
-.forEach(btn=>btn.classList.remove("selected"));
-
-window.scrollTo(0,0);
+  window.open(url, "_blank");
 }
 
 </script>
