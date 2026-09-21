@@ -6,97 +6,108 @@
 <title>Top Up Game</title>
 
 <style>
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#090914;
+color:white
 }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0b0b14;
-  color: white;
+.container{
+max-width:520px;
+margin:auto;
+padding:20px
 }
 
-.container {
-  max-width: 500px;
-  margin: auto;
-  padding: 25px 18px;
+h1{
+text-align:center;
+color:#00e5ff;
+margin-bottom:5px
 }
 
-h1 {
-  text-align: center;
-  color: #00e5ff;
+.subtitle{
+text-align:center;
+color:#aaa;
+margin-bottom:20px
 }
 
-.card {
-  background: #151525;
-  padding: 20px;
-  border-radius: 15px;
-  margin-top: 20px;
+.card{
+background:#151525;
+padding:20px;
+border-radius:16px;
+box-shadow:0 0 20px #000
 }
 
-label {
-  display: block;
-  margin-top: 15px;
-  margin-bottom: 7px;
+label{
+display:block;
+margin-top:15px;
+margin-bottom:7px;
+font-weight:bold
 }
 
-input, select {
-  width: 100%;
-  padding: 13px;
-  border: none;
-  border-radius: 9px;
-  background: #24243a;
-  color: white;
-  font-size: 15px;
+select,input{
+width:100%;
+padding:13px;
+border:1px solid #333;
+border-radius:9px;
+background:#222238;
+color:white;
+font-size:15px
 }
 
-.nominal {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+.nominal{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin-top:10px
 }
 
-.nominal button {
-  padding: 14px;
-  border: 1px solid #333;
-  border-radius: 10px;
-  background: #202038;
-  color: white;
-  cursor: pointer;
+.nominal button{
+padding:14px 8px;
+border:1px solid #333;
+border-radius:10px;
+background:#202038;
+color:white;
+font-weight:bold;
+cursor:pointer
 }
 
-.nominal button:hover {
-  background: #00a8bd;
+.nominal button:hover,
+.nominal button.pilih{
+background:#00a8bd;
+border-color:#00e5ff
 }
 
-.pilih {
-  background: #00a8bd !important;
+.info{
+margin-top:18px;
+padding:14px;
+background:#202038;
+border-radius:10px;
+line-height:1.8
 }
 
-#pesan {
-  width: 100%;
-  margin-top: 22px;
-  padding: 15px;
-  border: none;
-  border-radius: 10px;
-  background: #25d366;
-  color: white;
-  font-size: 17px;
-  font-weight: bold;
-  cursor: pointer;
+.order{
+color:#00e5ff;
+font-weight:bold
 }
 
-#pesan:hover {
-  background: #1ebe5d;
+#pesan{
+width:100%;
+margin-top:20px;
+padding:15px;
+border:0;
+border-radius:10px;
+background:#25d366;
+color:white;
+font-size:17px;
+font-weight:bold;
+cursor:pointer
 }
 
-.info {
-  margin-top: 18px;
-  padding: 12px;
-  background: #202038;
-  border-radius: 10px;
-  font-size: 14px;
+#pesan:hover{
+background:#1ebe5d
 }
 </style>
 </head>
@@ -106,47 +117,44 @@ input, select {
 <div class="container">
 
 <h1>🎮 TOP UP GAME</h1>
+<div class="subtitle">Cepat • Mudah • Aman</div>
 
 <div class="card">
 
-<label>Game</label>
-<select id="game">
-  <option value="Mobile Legends">Mobile Legends</option>
-  <option value="Free Fire">Free Fire</option>
-  <option value="PUBG Mobile">PUBG Mobile</option>
+<label>🎮 Pilih Game</label>
+
+<select id="game" onchange="ubahNominal()">
+<option value="Mobile Legends">Mobile Legends</option>
+<option value="Free Fire">Free Fire</option>
+<option value="PUBG Mobile">PUBG Mobile</option>
+<option value="Honor of Kings">Honor of Kings</option>
 </select>
 
-<label>ID Player</label>
-<input type="text" id="playerId" placeholder="Masukkan ID Player">
+<label>🆔 ID Player</label>
+<input id="playerId" type="text" placeholder="Masukkan ID Player">
 
-<label>Server / Zone ID</label>
-<input type="text" id="serverId" placeholder="Masukkan Server / Zone ID">
+<label>🌐 Server / Zone ID</label>
+<input id="serverId" type="text" placeholder="Masukkan Server / Zone ID">
 
-<label>Pilih Nominal</label>
+<label>💎 Pilih Nominal</label>
 
-<div class="nominal">
-
-<button onclick="pilih(this, '86 DM', '20000')">
-86 DM<br>Rp20.000
-</button>
-
-<button onclick="pilih(this, '172 DM', '40000')">
-172 DM<br>Rp40.000
-</button>
-
-<button onclick="pilih(this, '257 DM', '60000')">
-257 DM<br>Rp60.000
-</button>
-
-<button onclick="pilih(this, '344 DM', '80000')">
-344 DM<br>Rp80.000
-</button>
-
-</div>
+<div class="nominal" id="nominalBox"></div>
 
 <div class="info">
-Nominal: <b id="nominalText">Belum dipilih</b><br>
-Harga: <b id="hargaText">-</b>
+
+🧾 Nomor Order:
+<span class="order" id="orderText">Akan dibuat saat pesan</span>
+
+<br>
+
+💎 Nominal:
+<b id="nominalText">Belum dipilih</b>
+
+<br>
+
+💰 Harga:
+<b id="hargaText">-</b>
+
 </div>
 
 <button id="pesan" onclick="pesanWhatsApp()">
@@ -158,54 +166,136 @@ Harga: <b id="hargaText">-</b>
 
 <script>
 
-let nominalDipilih = "";
-let hargaDipilih = "";
+let nominalDipilih="";
+let hargaDipilih="";
 
-function pilih(button, nominal, harga) {
+const dataGame={
 
-  document.querySelectorAll(".nominal button")
-    .forEach(btn => btn.classList.remove("pilih"));
+"Mobile Legends":[
+["86 DM","20000"],
+["172 DM","40000"],
+["257 DM","60000"],
+["344 DM","80000"],
+["429 DM","100000"],
+["514 DM","120000"],
+["706 DM","160000"],
+["878 DM","200000"]
+],
 
-  button.classList.add("pilih");
+"Free Fire":[
+["70 DM","10000"],
+["140 DM","20000"],
+["355 DM","50000"],
+["720 DM","100000"],
+["1450 DM","200000"],
+["2180 DM","300000"]
+],
 
-  nominalDipilih = nominal;
-  hargaDipilih = harga;
+"PUBG Mobile":[
+["60 UC","15000"],
+["325 UC","75000"],
+["660 UC","150000"],
+["1800 UC","350000"],
+["3850 UC","700000"]
+],
 
-  document.getElementById("nominalText").innerText = nominal;
+"Honor of Kings":[
+["80 Tokens","15000"],
+["240 Tokens","40000"],
+["400 Tokens","65000"],
+["800 Tokens","120000"],
+["1200 Tokens","175000"],
+["2000 Tokens","280000"]
+]
 
-  document.getElementById("hargaText").innerText =
-    "Rp" + Number(harga).toLocaleString("id-ID");
+};
+
+function ubahNominal(){
+
+const game=document.getElementById("game").value;
+const box=document.getElementById("nominalBox");
+
+box.innerHTML="";
+
+nominalDipilih="";
+hargaDipilih="";
+
+document.getElementById("nominalText").innerText="Belum dipilih";
+document.getElementById("hargaText").innerText="-";
+
+dataGame[game].forEach(item=>{
+
+const button=document.createElement("button");
+
+button.innerHTML=
+item[0]+"<br>Rp"+
+Number(item[1]).toLocaleString("id-ID");
+
+button.onclick=function(){
+
+document.querySelectorAll(".nominal button")
+.forEach(btn=>btn.classList.remove("pilih"));
+
+button.classList.add("pilih");
+
+nominalDipilih=item[0];
+hargaDipilih=item[1];
+
+document.getElementById("nominalText").innerText=item[0];
+
+document.getElementById("hargaText").innerText=
+"Rp"+Number(item[1]).toLocaleString("id-ID");
+
+};
+
+box.appendChild(button);
+
+});
+
 }
 
-function pesanWhatsApp() {
+function buatOrderID(){
 
-  const game = document.getElementById("game").value;
-  const playerId = document.getElementById("playerId").value.trim();
-  const serverId = document.getElementById("serverId").value.trim();
+const angka=Math.floor(100000+Math.random()*900000);
 
-  if (!playerId) {
-    alert("Masukkan ID Player terlebih dahulu!");
-    return;
-  }
+return "ORDER-"+angka;
 
-  if (!serverId) {
-    alert("Masukkan Server / Zone ID terlebih dahulu!");
-    return;
-  }
+}
 
-  if (!nominalDipilih) {
-    alert("Pilih nominal terlebih dahulu!");
-    return;
-  }
+function pesanWhatsApp(){
 
-  const harga =
-    "Rp" + Number(hargaDipilih).toLocaleString("id-ID");
+const game=document.getElementById("game").value;
+const playerId=document.getElementById("playerId").value.trim();
+const serverId=document.getElementById("serverId").value.trim();
 
-  const pesan =
+if(!playerId){
+alert("Masukkan ID Player terlebih dahulu!");
+return;
+}
+
+if(!serverId){
+alert("Masukkan Server / Zone ID terlebih dahulu!");
+return;
+}
+
+if(!nominalDipilih){
+alert("Pilih nominal terlebih dahulu!");
+return;
+}
+
+const orderID=buatOrderID();
+
+document.getElementById("orderText").innerText=orderID;
+
+const harga=
+"Rp"+Number(hargaDipilih).toLocaleString("id-ID");
+
+const pesan=
 `Halo Admin 👋
 
 Saya ingin melakukan top up.
 
+🧾 Nomor Order: ${orderID}
 🎮 Game: ${game}
 🆔 ID Player: ${playerId}
 🌐 Server/Zone: ${serverId}
@@ -214,16 +304,19 @@ Saya ingin melakukan top up.
 
 Mohon info pembayaran dan proses top upnya.`;
 
-  const nomorAdmin = "6287739759760";
+const nomorAdmin="6287739759760";
 
-  const url =
-    "https://wa.me/" +
-    nomorAdmin +
-    "?text=" +
-    encodeURIComponent(pesan);
+const url=
+"https://wa.me/"+
+nomorAdmin+
+"?text="+
+encodeURIComponent(pesan);
 
-  window.open(url, "_blank");
+window.open(url,"_blank");
+
 }
+
+ubahNominal();
 
 </script>
 
