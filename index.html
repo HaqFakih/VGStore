@@ -3,152 +3,248 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fakih Top Up - Gaming Store</title>
+<title>Fakih Top Up</title>
 
 <style>
 *{box-sizing:border-box}
-
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#080812;
-color:white;
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#080b14;
+ color:#fff
 }
-
 .container{
-max-width:520px;
-margin:auto;
-padding:18px;
+ max-width:600px;
+ margin:auto;
+ padding:18px
 }
-
 .header{
-text-align:center;
-padding:22px 10px;
+ padding:18px 0 25px;
+ text-align:center
 }
-
 .logo{
-font-size:42px;
+ display:inline-flex;
+ width:58px;
+ height:58px;
+ align-items:center;
+ justify-content:center;
+ border-radius:18px;
+ background:linear-gradient(135deg,#00e5ff,#1769ff);
+ font-size:30px;
+ box-shadow:0 8px 25px #0066ff55
 }
-
 h1{
-margin:5px 0;
-color:#00e5ff;
+ margin:12px 0 5px;
+ font-size:27px
 }
-
 .subtitle{
-color:#aaa;
-font-size:14px;
+ color:#8992a5;
+ font-size:14px
+}
+.section{
+ margin-bottom:18px
+}
+.title{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-bottom:10px
+}
+.title h2{
+ font-size:18px;
+ margin:0
+}
+.badge{
+ font-size:11px;
+ color:#00e5ff;
+ background:#06252c;
+ padding:6px 9px;
+ border-radius:20px
 }
 
-.card{
-background:#151525;
-padding:20px;
-border-radius:18px;
-margin-bottom:15px;
-box-shadow:0 0 20px #000;
+/* GAME */
+.games{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:10px
 }
-
-label{
-display:block;
-margin-top:15px;
-margin-bottom:7px;
-font-weight:bold;
+.game{
+ position:relative;
+ overflow:hidden;
+ min-height:100px;
+ padding:15px;
+ border:1px solid #242b3d;
+ border-radius:16px;
+ background:linear-gradient(145deg,#171d2c,#101520);
+ cursor:pointer;
+ transition:.2s
 }
-
-select,input{
-width:100%;
-padding:13px;
-border:1px solid #333;
-border-radius:10px;
-background:#222238;
-color:white;
-font-size:15px;
+.game:hover{
+ transform:translateY(-2px)
 }
-
-.game-info{
-display:flex;
-align-items:center;
-gap:12px;
-background:#202038;
-padding:12px;
-border-radius:12px;
-margin-top:12px;
+.game.active{
+ border:2px solid #00d9ff;
+ box-shadow:0 0 18px #00d9ff30
 }
-
 .game-icon{
-font-size:30px;
+ font-size:31px;
+ margin-bottom:10px
+}
+.game-name{
+ font-weight:bold;
+ font-size:14px
+}
+.game-sub{
+ color:#798397;
+ font-size:11px;
+ margin-top:4px
+}
+.check{
+ display:none;
+ position:absolute;
+ right:9px;
+ top:9px;
+ background:#00d9ff;
+ color:#001014;
+ width:21px;
+ height:21px;
+ border-radius:50%;
+ text-align:center;
+ line-height:21px;
+ font-weight:bold;
+ font-size:12px
+}
+.game.active .check{
+ display:block
 }
 
+/* CARD */
+.card{
+ background:#111722;
+ border:1px solid #20283a;
+ border-radius:17px;
+ padding:16px;
+ margin-bottom:18px
+}
+label{
+ display:block;
+ margin:0 0 7px;
+ font-size:13px;
+ font-weight:bold;
+ color:#dce3ef
+}
+input{
+ width:100%;
+ padding:13px;
+ margin-bottom:14px;
+ border:1px solid #293246;
+ border-radius:11px;
+ background:#0b1019;
+ color:#fff;
+ outline:none;
+ font-size:14px
+}
+input:focus{
+ border-color:#00d9ff
+}
+
+/* NOMINAL */
 .nominal{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-margin-top:10px;
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:9px
 }
-
 .nominal button{
-padding:13px 7px;
-border:1px solid #333;
-border-radius:10px;
-background:#202038;
-color:white;
-font-weight:bold;
+ padding:13px 8px;
+ border:1px solid #293246;
+ border-radius:12px;
+ background:#0c111b;
+ color:#fff;
+ text-align:left;
+ cursor:pointer
 }
-
+.nominal button:hover{
+ border-color:#00d9ff
+}
 .nominal button.pilih{
-background:#00a8bd;
-border-color:#00e5ff;
+ background:#062b35;
+ border-color:#00d9ff;
+ box-shadow:0 0 12px #00d9ff20
+}
+.nominal .dm{
+ font-weight:bold;
+ font-size:14px
+}
+.nominal .price{
+ color:#00e5ff;
+ font-weight:bold;
+ font-size:13px;
+ margin-top:5px
 }
 
-.info{
-margin-top:18px;
-padding:14px;
-background:#202038;
-border-radius:12px;
-line-height:1.9;
+/* DETAIL */
+.detail{
+ margin-top:15px;
+ background:#0b1019;
+ border-radius:12px;
+ padding:13px;
+ font-size:13px;
+ line-height:1.9
+}
+.detail-row{
+ display:flex;
+ justify-content:space-between;
+ border-bottom:1px solid #1b2331
+}
+.detail-row:last-child{
+ border:0
+}
+.muted{
+ color:#788398
+}
+.total{
+ color:#00e5ff;
+ font-size:15px;
+ font-weight:bold
 }
 
-.order{
-color:#00e5ff;
-font-weight:bold;
+/* BUTTON */
+.order-btn{
+ width:100%;
+ padding:15px;
+ border:0;
+ border-radius:12px;
+ background:linear-gradient(135deg,#00d9ff,#087cff);
+ color:#001018;
+ font-weight:bold;
+ font-size:16px;
+ cursor:pointer;
+ margin-top:15px
+}
+.order-btn:hover{
+ filter:brightness(1.08)
 }
 
-.payment{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-margin-top:10px;
+/* INFO */
+.info-list{
+ display:grid;
+ gap:9px
 }
-
-.payment div{
-background:#202038;
-padding:13px;
-border-radius:10px;
-text-align:center;
+.info-item{
+ background:#0b1019;
+ padding:12px;
+ border-radius:11px;
+ color:#b9c2d1;
+ font-size:13px
 }
-
-#pesan{
-width:100%;
-margin-top:20px;
-padding:15px;
-border:0;
-border-radius:12px;
-background:#25d366;
-color:white;
-font-size:17px;
-font-weight:bold;
+.info-item b{
+ color:#fff
 }
-
-.cara-order{
-line-height:1.8;
-color:#ddd;
-}
-
 .footer{
-text-align:center;
-color:#777;
-font-size:12px;
-padding:15px;
+ text-align:center;
+ color:#687286;
+ font-size:11px;
+ padding:8px 0 20px
 }
 </style>
 </head>
@@ -157,276 +253,301 @@ padding:15px;
 
 <div class="container">
 
-<div class="header">
-<div class="logo">🎮</div>
-<h1>FAKIH TOP UP</h1>
-<div class="subtitle">Top Up Game • Cepat • Mudah • Aman</div>
+<header class="header">
+ <div class="logo">🎮</div>
+ <h1>FAKIH TOP UP</h1>
+ <div class="subtitle">Top up game cepat, mudah & praktis</div>
+</header>
+
+<!-- PILIH GAME -->
+<div class="section">
+ <div class="title">
+  <h2>🎮 Pilih Game</h2>
+  <span class="badge">GAME</span>
+ </div>
+
+ <div class="games">
+
+  <div class="game active" onclick="pilihGame('Mobile Legends',this)">
+   <div class="check">✓</div>
+   <div class="game-icon">⚔️</div>
+   <div class="game-name">Mobile Legends</div>
+   <div class="game-sub">Diamond</div>
+  </div>
+
+  <div class="game" onclick="pilihGame('Free Fire',this)">
+   <div class="check">✓</div>
+   <div class="game-icon">🔥</div>
+   <div class="game-name">Free Fire</div>
+   <div class="game-sub">Diamond</div>
+  </div>
+
+  <div class="game" onclick="pilihGame('PUBG Mobile',this)">
+   <div class="check">✓</div>
+   <div class="game-icon">🎯</div>
+   <div class="game-name">PUBG Mobile</div>
+   <div class="game-sub">UC</div>
+  </div>
+
+  <div class="game" onclick="pilihGame('Honor of Kings',this)">
+   <div class="check">✓</div>
+   <div class="game-icon">👑</div>
+   <div class="game-name">Honor of Kings</div>
+   <div class="game-sub">Token</div>
+  </div>
+
+ </div>
 </div>
 
+<!-- DATA PLAYER -->
 <div class="card">
 
-<label>🎮 Pilih Game</label>
+ <div class="title">
+  <h2>🆔 Data Akun</h2>
+  <span class="badge">WAJIB</span>
+ </div>
 
-<select id="game" onchange="ubahNominal()">
-<option value="Mobile Legends">Mobile Legends</option>
-<option value="Free Fire">Free Fire</option>
-<option value="PUBG Mobile">PUBG Mobile</option>
-<option value="Honor of Kings">Honor of Kings</option>
-</select>
+ <label>ID Player</label>
+ <input id="playerId" placeholder="Masukkan ID Player">
 
-<div class="game-info">
-<div class="game-icon" id="gameIcon">⚔️</div>
-<div>
-<b id="gameName">Mobile Legends</b>
-<br>
-<span style="color:#aaa">Pilih game yang ingin di-top up</span>
-</div>
-</div>
-
-<label>🆔 ID Player</label>
-<input id="playerId" type="text" placeholder="Masukkan ID Player">
-
-<label>🌐 Server / Zone ID</label>
-<input id="serverId" type="text" placeholder="Masukkan Server / Zone ID">
-
-<label>💎 Pilih Nominal</label>
-<div class="nominal" id="nominalBox"></div>
-
-<div class="info">
-
-🧾 Nomor Order:
-<span class="order" id="orderText">Akan dibuat saat pesan</span>
-
-<br>
-
-🎮 Game:
-<b id="gameText">Mobile Legends</b>
-
-<br>
-
-💎 Nominal:
-<b id="nominalText">Belum dipilih</b>
-
-<br>
-
-💰 Harga:
-<b id="hargaText">-</b>
+ <label>Server / Zone ID</label>
+ <input id="serverId" placeholder="Masukkan Server / Zone ID">
 
 </div>
 
-<label>💳 Metode Pembayaran</label>
-
-<div class="payment">
-
-<div>💵 Transfer / E-Wallet</div>
-<div>📲 Konfirmasi WhatsApp</div>
-
-</div>
-
-<button id="pesan" onclick="pesanWhatsApp()">
-📲 PESAN VIA WHATSAPP
-</button>
-
-</div>
-
+<!-- NOMINAL -->
 <div class="card">
 
-<h3>📋 Cara Order</h3>
+ <div class="title">
+  <h2>💎 Pilih Nominal</h2>
+  <span class="badge" id="gameLabel">Mobile Legends</span>
+ </div>
 
-<div class="cara-order">
-1️⃣ Pilih game<br>
-2️⃣ Masukkan ID Player<br>
-3️⃣ Masukkan Server / Zone ID<br>
-4️⃣ Pilih nominal<br>
-5️⃣ Klik <b>PESAN VIA WHATSAPP</b><br>
-6️⃣ Admin akan memberikan informasi pembayaran<br>
-7️⃣ Setelah pembayaran dikonfirmasi, pesanan diproses
+ <div class="nominal" id="nominalBox"></div>
+
+ <div class="detail">
+
+  <div class="detail-row">
+   <span class="muted">Game</span>
+   <b id="detailGame">Mobile Legends</b>
+  </div>
+
+  <div class="detail-row">
+   <span class="muted">Nominal</span>
+   <b id="detailNominal">Belum dipilih</b>
+  </div>
+
+  <div class="detail-row">
+   <span class="muted">Harga</span>
+   <span class="total" id="detailHarga">Rp0</span>
+  </div>
+
+ </div>
+
+ <button class="order-btn" onclick="pesanWhatsApp()">
+  📲 PESAN SEKARANG
+ </button>
+
 </div>
 
-</div>
-
+<!-- CARA ORDER -->
 <div class="card">
 
-<h3>⚡ Info</h3>
+ <div class="title">
+  <h2>📋 Cara Order</h2>
+ </div>
 
-<div class="cara-order">
-✅ Proses melalui WhatsApp Admin<br>
-✅ Nomor order otomatis<br>
-✅ Data pesanan dikirim lengkap<br>
-✅ Cocok untuk pemesanan dari HP
-</div>
+ <div class="info-list">
+
+  <div class="info-item">
+   <b>1.</b> Pilih game
+  </div>
+
+  <div class="info-item">
+   <b>2.</b> Masukkan ID dan Server
+  </div>
+
+  <div class="info-item">
+   <b>3.</b> Pilih nominal
+  </div>
+
+  <div class="info-item">
+   <b>4.</b> Tekan Pesan Sekarang
+  </div>
+
+  <div class="info-item">
+   <b>5.</b> Lanjut pembayaran melalui Admin WhatsApp
+  </div>
+
+ </div>
 
 </div>
 
 <div class="footer">
-© 2026 Fakih Top Up
+ © 2026 Fakih Top Up • Pemesanan melalui WhatsApp
 </div>
 
 </div>
 
 <script>
 
+let gameDipilih="Mobile Legends";
 let nominalDipilih="";
 let hargaDipilih="";
 
 const dataGame={
 
 "Mobile Legends":[
-["86 DM","20000"],
-["172 DM","40000"],
-["257 DM","60000"],
-["344 DM","80000"],
-["429 DM","100000"],
-["514 DM","120000"],
-["706 DM","160000"],
-["878 DM","200000"]
+ ["86 Diamond","20000"],
+ ["172 Diamond","40000"],
+ ["257 Diamond","60000"],
+ ["344 Diamond","80000"],
+ ["429 Diamond","100000"],
+ ["514 Diamond","120000"],
+ ["706 Diamond","160000"],
+ ["878 Diamond","200000"]
 ],
 
 "Free Fire":[
-["70 DM","10000"],
-["140 DM","20000"],
-["355 DM","50000"],
-["720 DM","100000"],
-["1450 DM","200000"],
-["2180 DM","300000"]
+ ["70 Diamond","10000"],
+ ["140 Diamond","20000"],
+ ["355 Diamond","50000"],
+ ["720 Diamond","100000"],
+ ["1450 Diamond","200000"],
+ ["2180 Diamond","300000"]
 ],
 
 "PUBG Mobile":[
-["60 UC","15000"],
-["325 UC","75000"],
-["660 UC","150000"],
-["1800 UC","350000"],
-["3850 UC","700000"]
+ ["60 UC","15000"],
+ ["325 UC","75000"],
+ ["660 UC","150000"],
+ ["1800 UC","350000"],
+ ["3850 UC","700000"]
 ],
 
 "Honor of Kings":[
-["80 Tokens","15000"],
-["240 Tokens","40000"],
-["400 Tokens","65000"],
-["800 Tokens","120000"],
-["1200 Tokens","175000"],
-["2000 Tokens","280000"]
+ ["80 Token","15000"],
+ ["240 Token","40000"],
+ ["400 Token","65000"],
+ ["800 Token","120000"],
+ ["1200 Token","175000"],
+ ["2000 Token","280000"]
 ]
 
 };
 
-const iconGame={
-"Mobile Legends":"⚔️",
-"Free Fire":"🔥",
-"PUBG Mobile":"🔫",
-"Honor of Kings":"👑"
-};
+function pilihGame(game,element){
 
-function ubahNominal(){
+ gameDipilih=game;
 
-const game=document.getElementById("game").value;
+ document.querySelectorAll(".game")
+ .forEach(x=>x.classList.remove("active"));
 
-const box=document.getElementById("nominalBox");
+ element.classList.add("active");
 
-box.innerHTML="";
+ document.getElementById("gameLabel").innerText=game;
+ document.getElementById("detailGame").innerText=game;
 
-nominalDipilih="";
-hargaDipilih="";
+ nominalDipilih="";
+ hargaDipilih="";
 
-document.getElementById("nominalText").innerText="Belum dipilih";
-document.getElementById("hargaText").innerText="-";
-document.getElementById("gameText").innerText=game;
-document.getElementById("gameName").innerText=game;
-document.getElementById("gameIcon").innerText=iconGame[game];
+ document.getElementById("detailNominal")
+ .innerText="Belum dipilih";
 
-dataGame[game].forEach(item=>{
+ document.getElementById("detailHarga")
+ .innerText="Rp0";
 
-const button=document.createElement("button");
+ tampilkanNominal();
 
-button.innerHTML=item[0]+"<br>Rp"+Number(item[1]).toLocaleString("id-ID");
+}
 
-button.onclick=function(){
+function tampilkanNominal(){
 
-document.querySelectorAll(".nominal button")
-.forEach(btn=>btn.classList.remove("pilih"));
+ const box=document.getElementById("nominalBox");
 
-button.classList.add("pilih");
+ box.innerHTML="";
 
-nominalDipilih=item[0];
+ dataGame[gameDipilih].forEach(item=>{
 
-hargaDipilih=item[1];
+  const button=document.createElement("button");
 
-document.getElementById("nominalText")
-.innerText=item[0];
+  button.innerHTML=
+   '<div class="dm">'+item[0]+'</div>'+
+   '<div class="price">Rp'+
+   Number(item[1]).toLocaleString("id-ID")+
+   '</div>';
 
-document.getElementById("hargaText")
-.innerText=
-"Rp"+Number(item[1]).toLocaleString("id-ID");
+  button.onclick=function(){
 
-};
+   document.querySelectorAll(".nominal button")
+   .forEach(x=>x.classList.remove("pilih"));
 
-box.appendChild(button);
+   button.classList.add("pilih");
 
-});
+   nominalDipilih=item[0];
+   hargaDipilih=item[1];
+
+   document.getElementById("detailNominal")
+   .innerText=item[0];
+
+   document.getElementById("detailHarga")
+   .innerText=
+   "Rp"+Number(item[1]).toLocaleString("id-ID");
+
+  };
+
+  box.appendChild(button);
+
+ });
 
 }
 
 function buatOrderID(){
 
-const angka=Math.floor(
-100000+Math.random()*900000
-);
-
-return "ORDER-"+angka;
+ return "ORDER-"+Math.floor(
+  100000+Math.random()*900000
+ );
 
 }
 
 function pesanWhatsApp(){
 
-const game=document.getElementById("game").value;
+ const playerId=
+ document.getElementById("playerId")
+ .value.trim();
 
-const playerId=
-document.getElementById("playerId")
-.value.trim();
+ const serverId=
+ document.getElementById("serverId")
+ .value.trim();
 
-const serverId=
-document.getElementById("serverId")
-.value.trim();
+ if(!playerId){
+  alert("Masukkan ID Player terlebih dahulu!");
+  return;
+ }
 
-if(!playerId){
+ if(!serverId){
+  alert("Masukkan Server / Zone ID terlebih dahulu!");
+  return;
+ }
 
-alert("Masukkan ID Player terlebih dahulu!");
+ if(!nominalDipilih){
+  alert("Pilih nominal terlebih dahulu!");
+  return;
+ }
 
-return;
+ const orderID=buatOrderID();
 
-}
+ const harga=
+ "Rp"+Number(hargaDipilih)
+ .toLocaleString("id-ID");
 
-if(!serverId){
-
-alert("Masukkan Server / Zone ID terlebih dahulu!");
-
-return;
-
-}
-
-if(!nominalDipilih){
-
-alert("Pilih nominal terlebih dahulu!");
-
-return;
-
-}
-
-const orderID=buatOrderID();
-
-document.getElementById("orderText")
-.innerText=orderID;
-
-const harga=
-"Rp"+Number(hargaDipilih)
-.toLocaleString("id-ID");
-
-const pesan=`Halo Admin 👋
+ const pesan=
+ `Halo Admin 👋
 
 Saya ingin melakukan top up.
 
 🧾 Nomor Order: ${orderID}
-🎮 Game: ${game}
+🎮 Game: ${gameDipilih}
 🆔 ID Player: ${playerId}
 🌐 Server/Zone: ${serverId}
 💎 Nominal: ${nominalDipilih}
@@ -434,17 +555,17 @@ Saya ingin melakukan top up.
 
 Mohon info pembayaran dan proses top upnya.`;
 
-const nomorAdmin="6287739759760";
+ const nomorAdmin="6287739759760";
 
-const url=
-"https://wa.me/"+nomorAdmin+
-"?text="+encodeURIComponent(pesan);
+ const url=
+ "https://wa.me/"+nomorAdmin+
+ "?text="+encodeURIComponent(pesan);
 
-window.open(url,"_blank");
+ window.open(url,"_blank");
 
 }
 
-ubahNominal();
+tampilkanNominal();
 
 </script>
 
