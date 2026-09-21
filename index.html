@@ -1,0 +1,241 @@
+<!DOCTYPE com>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VGStore - Top Up Game</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f6fb;
+      color: #172033;
+    }
+    header {
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      color: White;
+      padding: 28px 18px;
+      text-align: center;
+    }
+    header h1 { margin: 0 0 8px; font-size: 30px; }
+    header p { margin: 0; opacity: .9; }
+    .container {
+      width: min(900px, 92%);
+      margin: 22px auto 40px;
+    }
+    .games {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 8px 25px rgba(20,30,60,.08);
+    }
+    .game-icon { font-size: 42px; }
+    .card h2 { margin: 10px 0 8px; }
+    .card p { color: #667085; }
+    button {
+      width: 100%;
+      border: 0;
+      border-radius: 12px;
+      padding: 13px 16px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      background: #2563eb;
+      color: white;
+    }
+    button:hover { opacity: .92; }
+    .form-card {
+      margin-top: 22px;
+      display: none;
+    }
+    label {
+      display: block;
+      margin: 14px 0 6px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d0d5dd;
+      border-radius: 10px;
+      font-size: 15px;
+      background: white;
+    }
+    .small { color: #667085; font-size: 13px; }
+    .wa {
+      background: #16a34a;
+      margin-top: 10px;
+    }
+    footer {
+      text-align: center;
+      color: #667085;
+      padding: 10px 20px 30px;
+      font-size: 13px;
+    }
+    .notice {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      color: #9a3412;
+      border-radius: 12px;
+      padding: 12px;
+      margin-top: 16px;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🎮 VGStore</h1>
+  <p>Top Up Game</p>
+</header>
+
+<main class="container">
+  <section class="games">
+    <div class="card">
+      <div class="game-icon">🟦</div>
+      <h2>Mobile Legends</h2>
+      <p>Pilih diamond dan isi ID akunmu.</p>
+      <button onclick="openForm('Mobile Legends')">Top Up MLBB</button>
+    </div>
+
+    <div class="card">
+      <div class="game-icon">🔥</div>
+      <h2>Free Fire</h2>
+      <p>Pilih diamond dan isi ID akunmu.</p>
+      <button onclick="openForm('Free Fire')">Top Up Free Fire</button>
+    </div>
+  </section>
+
+  <section id="orderForm" class="card form-card">
+    <h2 id="formTitle">Form Order</h2>
+    <p class="small">Isi data dengan benar sebelum mengirim pesanan.</p>
+
+    <label for="userId">User ID</label>
+    <input id="userId" type="text" placeholder="Contoh: 123456789">
+
+    <div id="serverBox">
+      <label for="serverId">Server ID (MLBB)</label>
+      <input id="serverId" type="text" placeholder="Contoh: 1234">
+    </div>
+
+    <label for="nominal">Nominal</label>
+    <select id="nominal"></select>
+
+    <label for="wa">Nomor WhatsApp</label>
+    <input id="wa" type="tel" placeholder="Contoh: 08123456789">
+
+    <div class="notice">
+      Versi 1 belum melakukan pembayaran atau top-up otomatis.
+      Pesanan akan dikirim ke WhatsApp admin.
+    </div>
+
+    <button class="wa" onclick="sendOrder()">📲 Kirim Pesanan ke WhatsApp</button>
+  </section>
+</main>
+
+<footer>
+     VGStore
+</footer>
+
+<script>
+  // GANTI NOMOR INI dengan nomor WhatsApp admin.
+  // Gunakan kode negara, contoh Indonesia: 628123456789
+  const ADMIN_WA = "6287739759760";
+
+  let selectedGame = "";
+
+  const mlNominals = [
+    "86 Diamond",
+    "172 Diamond",
+    "257 Diamond",
+    "344 Diamond",
+    "429 Diamond",
+    "514 Diamond",
+    "Wekkly diamond pas",
+  ];
+
+  const ffNominals = [
+    "70 Diamond",
+    "140 Diamond",
+    "355 Diamond",
+    "720 Diamond",
+    "1000 Diamond",
+    "1450 Diamond"
+  ];
+
+  function openForm(game) {
+    selectedGame = game;
+
+    document.getElementById("orderForm").style.display = "block";
+    document.getElementById("formTitle").textContent = "Order " + game;
+
+    const serverBox = document.getElementById("serverBox");
+    const nominal = document.getElementById("nominal");
+
+    nominal.innerHTML = "";
+
+    const list = game === "Mobile Legends" ? mlNominals : ffNominals;
+
+    list.forEach(item => {
+      const option = document.createElement("option");
+      option.value = item;
+      option.textContent = item;
+      nominal.appendChild(option);
+    });
+
+    if (game === "Mobile Legends") {
+      serverBox.style.display = "block";
+    } else {
+      serverBox.style.display = "none";
+    }
+
+    document.getElementById("orderForm").scrollIntoView({
+      behavior: "smooth"
+    });
+  }
+
+  function sendOrder() {
+    const userId = document.getElementById("userId").value.trim();
+    const serverId = document.getElementById("serverId").value.trim();
+    const nominal = document.getElementById("nominal").value;
+    const wa = document.getElementById("wa").value.trim();
+
+    if (!userId || !wa) {
+      alert("User ID dan nomor WhatsApp wajib diisi.");
+      return;
+    }
+
+    if (selectedGame === "Mobile Legends" && !serverId) {
+      alert("Server ID MLBB wajib diisi.");
+      return;
+    }
+
+    let message =
+      "Halo Admin VGStor%0A%0A" +
+      "Saya ingin order:%0A" +
+      "Game: " + encodeURIComponent(selectedGame) + "%0A" +
+      "User ID: " + encodeURIComponent(userId) + "%0A";
+
+    if (selectedGame === "Mobile Legends") {
+      message += "Server ID: " + encodeURIComponent(serverId) + "%0A";
+    }
+
+    message +=
+      "Nominal: " + encodeURIComponent(nominal) + "%0A" +
+      "WhatsApp pembeli: " + encodeURIComponent(wa);
+
+    const waUrl = "https://wa.me/" + ADMIN_WA + "?text=" + message;
+    window.location.href = waUrl;
+  }
+</script>
+
+</body>
+  </html>
+      
